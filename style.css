@@ -16,7 +16,13 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
 }
+
+button {
+    border: none;
+    outline: none;
+} 
 
 body {
     background-color: var(--off-white);
@@ -106,4 +112,21 @@ body {
 
 .result-container span {
     color: var(--purple);
+}
+
+.error .input-element label {
+    color: var(--light-red)!important;
+}
+
+.error .input-element input {
+    border-color: var(--light-red)!important;
+}
+
+.error .input-element:nth-child(1)::after{
+    content: 'Please Enter a Valid Date';
+    font-style: italic;
+    color: var(--light-red);
+    font-size: 0.8em;
+    position: absolute;
+    top: 200px;
 }
