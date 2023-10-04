@@ -15,6 +15,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    transition: all 1s;
 }
 
 body {
@@ -27,8 +28,44 @@ body {
 
 .container {
     background-color: var(--white);
-    border-radius: 10px 10px 200px 10px;
+    border-radius: 20px 20px 200px 20px;
     width: 850px;
     height: 650px;
     box-shadow: 5px 5px 20px 1px rgba(0, 0, 0, 0.01);
+    padding: 60px;
+}
+
+.container .input-container {
+    display: flex;
+    gap: 30px;
+}
+
+.container .input-container .input-element {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .input-container .input-element input {
+    border: 1px solid var(--light-grey);
+    border-radius: 5px;
+    width: 160px;
+    height: 70px;
+    padding: 25px;
+    font-size: 32px;
+} 
+
+.container .input-container .input-element input::placeholder{
+    color: var(--smokey-grey);
+}
+
+.container .input-container .input-element input:focus {
+    outline: none;
+    border-color: var(--purple);
+}
+
+.container .input-container .input-element label {
+    color: var(--smokey-grey);
+    font-size: 0.8em;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
 }
