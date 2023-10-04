@@ -1,20 +1,43 @@
 function calculateAge() {
-    var birthYear = parseInt(document.getElementById("birthYear").value);
-    var birthMonth = parseInt(document.getElementById("birthMonth").value);
-    var birthDay = parseInt(document.getElementById("birthDay").value);
+    const yearsInput = parseInt(document.getElementById("birthYear").value);
+    const monthsInput = parseInt(document.getElementById("birthMonth").value);
+    const daysInput = parseInt(document.getElementById("birthDay").value);
 
-    var currentDate = new Date();
-    var currentYear = currentDate.getFullYear();
-    var currentMonth = currentDate.getMonth() + 1;
-    var currentDay = currentDate.getDate();
+    const currentDate = new Date();
+    const birthdate = new Date(currentDate.getFullYear() - yearsInput, currentDate.getMonth() - monthsInput, currentDate.getDate() - daysInput);
 
-    var age = currentYear - birthYear;
+    const ageMilliseconds = currentDate - birthdate;
+    const ageDate = new Date(ageMilliseconds);
+  
+    const ageYears = ageDate.getUTCFullYear() - 1970;
+    const ageMonths = ageDate.getUTCMonth();
+    const ageDays = ageDate.getUTCDate() -1;
 
-    if (currentMonth < birthMonth) {
-        age--;
-    } else if (currentMonth === birthMonth && currentDay < birthDay) {
-        age--;
-    }
+    if (ageMonths < 0 || (ageMonths === 0 && ageDays < 0)) {
+        ageYears--;
+        ageMonths += 12;
+    
+        if (ageDays < 0) {
+          const lastDayOfMonth = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            0
+          ).getDate();
+          ageDays += lastDayOfMonth;
+          ageMonths--;
+        }
+      }
 
-    document.getElementById("result").innerHTML = "Your age is " + age + " years.";
+    const yearsResultDiv = document.getElementById("yearsResult");
+    const monthsResultDiv = document.getElementById("monthsResult");
+    const daysResultDiv = document.getElementById("daysResult");
+
+    yearsResultDiv.innerHTML = ageYears;
+    monthsResultDiv.innerHTML = ageMonths;
+    daysResultDiv.innerHTML = ageDays;
+
+    console.log(currentDate);
+    console.log(ageMilliseconds);
+    console.log(ageDate);
+
 }
